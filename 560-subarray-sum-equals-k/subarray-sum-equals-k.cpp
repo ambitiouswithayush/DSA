@@ -6,18 +6,17 @@ public:
         vector<int>prefixSum(n,0);
         prefixSum[0]=nums[0];
         for(int i=1;i<n;i++){
-            prefixSum[i]=prefixSum[i-1]+nums[i];
+            prefixSum[i]=prefixSum[i-1]+nums[i];//counting prefixSum
         }
-        unordered_map<int,int>mp;// ps,freq
+        unordered_map<int,int>mp;//ps,freq
         for(int j=0;j<n;j++){
             if(prefixSum[j]==k) count++;
-
             int val=prefixSum[j]-k;
-            if(mp.find(val)!=mp.end()){
+            if(mp.find(val)!=mp.end()){//mil gya ps me
                 count+=mp[val];
             }
-            if(mp.find(prefixSum[j])==mp.end()){
-                mp[prefixSum[j]]=0;
+            if(mp.find(prefixSum[j])==mp.end()){//nhi mila ps me
+                mp[prefixSum[j]]=0;//val rkh do wha 
             }
             mp[prefixSum[j]]++;
         }
