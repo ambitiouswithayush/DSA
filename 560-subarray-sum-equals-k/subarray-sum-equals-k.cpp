@@ -15,9 +15,7 @@ public:
             if(mp.find(val)!=mp.end()){//mil gya ps me
                 count+=mp[val];
             }
-            if(mp.find(prefixSum[j])==mp.end()){//nhi mila ps me
-                mp[prefixSum[j]]=0;//val rkh do wha 
-            }
+            
             mp[prefixSum[j]]++;
         }
         return count;
