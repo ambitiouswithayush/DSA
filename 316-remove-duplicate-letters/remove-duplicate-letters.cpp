@@ -1,22 +1,22 @@
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
-        unordered_map<char,int>mp;
-        for(char c:s) mp[c]++;
+        vector<int>freq(26,0);
+        for(char c:s)freq[c-'a']++;
 
-        stack<int>st;
-        unordered_set<char>used;
+        stack<char>st;
+        vector<bool>used(26,false);
+
         for(char c:s){
-            mp[c]--;
+            freq[c-'a']--;
+            if(used[c-'a']) continue;
 
-            if(used.count(c)) continue;
-
-            while(!st.empty() && st.top()>c && mp[st.top()]>0){
-                used.erase(st.top());
+            while(!st.empty() && st.top()>c && freq[st.top()-'a']>0){
+                used[st.top()-'a']=false;
                 st.pop();
             }
             st.push(c);
-            used.insert(c);
+            used[c-'a']=true;
         }
         string ans="";
         while(!st.empty()){
